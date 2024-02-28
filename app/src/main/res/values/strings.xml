@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="title_activity_camera_view">CameraViewActivity</string>
+    <string name="title_activity_default">Default</string>
 </resources>
