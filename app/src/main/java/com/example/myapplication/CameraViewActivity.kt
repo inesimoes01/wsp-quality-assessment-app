@@ -245,7 +245,7 @@ fun PhotoBottomSheetContent(
     bitmaps: List<Bitmap>,
     modifier: Modifier = Modifier
 ) {
-    if(bitmaps.isEmpty()) {
+    if (bitmaps.isEmpty()) {
         Box(
             modifier = modifier
                 .padding(16.dp),
