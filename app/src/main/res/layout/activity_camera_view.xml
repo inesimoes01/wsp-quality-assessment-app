@@ -10,42 +10,179 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/cameraCaptureButton"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="50dp"
-        android:elevation="2dp"
-        android:text="@string/take_photo"
-        android:background="@drawable/button_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/vertical_centerline" />
-
-    <Button
-        android:id="@+id/videoCaptureButton"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginStart="50dp"
-        android:elevation="2dp"
-        android:text="@string/record_video"
-        android:background="@drawable/button_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/vertical_centerline" />
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vertical_centerline"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        android:layout_gravity="bottom"
+        android:background="@color/blue"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:visibility="visible">
+
+        <!-- Video Button -->
+        <ImageButton
+            android:id="@+id/btn_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#00FFFFFF"
+            android:contentDescription="@string/open_gallery"
+            android:src="@drawable/gallery_button" />
+
+        <!-- Take Photo Button -->
+        <ImageButton
+            android:id="@+id/btn_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#00FFFFFF"
+            android:contentDescription="@string/take_photo"
+            android:src="@drawable/ic_photo_button" />
+
+        <ImageButton
+            android:id="@+id/btn_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#00FFFFFF"
+            android:contentDescription="@string/record_video"
+            android:src="@drawable/gallery_button" />
+    </LinearLayout>
+<!--    <Button-->
+<!--        android:id="@+id/btn_photo"-->
+<!--        android:layout_width="110dp"-->
+<!--        android:layout_height="110dp"-->
+<!--        android:layout_marginBottom="50dp"-->
+<!--        android:layout_marginEnd="50dp"-->
+<!--        android:elevation="2dp"-->
+<!--        android:text="@string/take_photo"-->
+<!--        android:background="@drawable/button_background"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/vertical_centerline" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_video"-->
+<!--        android:layout_width="110dp"-->
+<!--        android:layout_height="110dp"-->
+<!--        android:layout_marginBottom="50dp"-->
+<!--        android:layout_marginStart="50dp"-->
+<!--        android:elevation="2dp"-->
+<!--        android:text="@string/record_video"-->
+<!--        android:background="@drawable/button_background"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@id/vertical_centerline" />-->
+
+
+<!--    <androidx.constraintlayout.widget.Guideline-->
+<!--        android:id="@+id/vertical_centerline"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintGuide_percent="0.5" />-->
+
 
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+<!--<androidx.camera.view.PreviewView-->
+<!--android:id="@+id/viewFinder"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent" >-->
+
+
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_gravity="bottom"-->
+<!--    android:background="@color/yellow"-->
+<!--    android:orientation="horizontal"-->
+<!--    android:padding="16dp"-->
+<!--    android:visibility="visible">-->
+
+<!--    &lt;!&ndash; Video Button &ndash;&gt;-->
+<!--    <ImageButton-->
+<!--        android:id="@+id/btn_gallery"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="1"-->
+<!--        android:backgroundTint="#00FFFFFF"-->
+<!--        android:contentDescription="@string/open_gallery"-->
+<!--        android:src="@drawable/gallery_button" />-->
+
+<!--    &lt;!&ndash; Take Photo Button &ndash;&gt;-->
+<!--    <ImageButton-->
+<!--        android:id="@+id/btn_photo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="1"-->
+<!--        android:backgroundTint="#00FFFFFF"-->
+<!--        android:contentDescription="@string/take_photo"-->
+<!--        android:src="@drawable/ic_photo_button" />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/btn_video"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="1"-->
+<!--        android:backgroundTint="#00FFFFFF"-->
+<!--        android:contentDescription="@string/record_video"-->
+<!--        android:src="@drawable/gallery_button" />-->
+<!--</LinearLayout>-->
+<!--</androidx.camera.view.PreviewView>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--        <Button-->
+    <!--            android:id="@+id/videoCaptureButton"-->
+    <!--            android:layout_width="110dp"-->
+    <!--            android:layout_height="110dp"-->
+    <!--            android:layout_marginStart="50dp"-->
+    <!--            android:layout_marginBottom="50dp"-->
+    <!--            android:background="@drawable/button_background"-->
+    <!--            android:elevation="2dp"-->
+    <!--            android:text="@string/record_video"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintStart_toEndOf="@id/vertical_centerline" />-->
+    <!--    <Button-->
+<!--        android:id="@+id/cameraCaptureButton"-->
+<!--        android:layout_width="110dp"-->
+<!--        android:layout_height="110dp"-->
+<!--        android:layout_marginBottom="50dp"-->
+<!--        android:layout_marginEnd="50dp"-->
+<!--        android:elevation="2dp"-->
+<!--        android:text="@string/take_photo"-->
+<!--        android:background="@drawable/button_background"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/vertical_centerline" />-->
+
+
+<!--    <androidx.constraintlayout.widget.Guideline-->
+<!--        android:id="@+id/vertical_centerline"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintGuide_percent="0.5" />-->
+
+
+
 <!--<androidx.camera.view.PreviewView-->
 <!--android:id="@+id/viewFinder"-->
 <!--android:layout_width="match_parent"-->

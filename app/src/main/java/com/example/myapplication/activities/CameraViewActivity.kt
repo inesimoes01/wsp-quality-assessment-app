@@ -2,11 +2,7 @@ package com.example.myapplication.activities
 
 import android.Manifest
 import android.content.ContentValues
-import android.content.Context
 import android.content.pm.PackageManager
-import android.hardware.camera2.CameraAccessException
-import android.hardware.camera2.CameraCharacteristics
-import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -28,14 +24,12 @@ import androidx.camera.video.VideoCapture
 import androidx.camera.video.VideoRecordEvent
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
-import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityCameraViewBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-typealias LumaListener = (luma: Double) -> Unit
 
 class CameraViewActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityCameraViewBinding
@@ -51,40 +45,33 @@ class CameraViewActivity : AppCompatActivity() {
         viewBinding = ActivityCameraViewBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        // Request camera permissions
+
         if (allPermissionsGranted()) {
             startCamera()
         } else {
             requestPermissions()
         }
 
-        // Set up the listener for take photo button
-        viewBinding.cameraCaptureButton.setOnClickListener { takePhoto() }
 
-        // Set up the listener for record video button
-        viewBinding.videoCaptureButton.setOnClickListener { recordVideo() }
+        // listeners for photo and video button
+        viewBinding.btnPhoto.setOnClickListener { takePhoto() }
+        viewBinding.btnVideo.setOnClickListener { takeVideo() }
+        viewBinding.btnGallery.setOnClickListener { goToGallery() }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
+
+
+    private fun goToGallery() {
+        TODO("Not yet implemented")
+    }
+
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
 
-        //Create time stamped name and MediaStore entry
-        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
-            .format(System.currentTimeMillis())
-        val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
-            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/CameraX")
-            }
-        }
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(
-            contentResolver,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            contentValues).build()
+        val outputOptions = savePhoto()
 
-        //set up image capture listener, which is triggered after photo has been taken
+        // set up image capture listener, which is triggered after photo has been taken
         imageCapture.takePicture(
             outputOptions, ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
@@ -100,10 +87,28 @@ class CameraViewActivity : AppCompatActivity() {
             })
     }
 
-    private fun recordVideo() {
+    private fun savePhoto(): ImageCapture.OutputFileOptions {
+        // create time stamped name and MediaStore entry
+        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
+            .format(System.currentTimeMillis())
+        val contentValues = ContentValues().apply {
+            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/CameraX")
+            }
+        }
+        return ImageCapture.OutputFileOptions.Builder(
+            contentResolver,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            contentValues
+        ).build()
+    }
+
+    private fun takeVideo() {
         val videoCapture = this.videoCapture ?: return
 
-        viewBinding.videoCaptureButton.isEnabled = false
+        viewBinding.btnVideo.isEnabled = false
 
         val curRecording = recording
         if (curRecording != null) {
@@ -141,8 +146,7 @@ class CameraViewActivity : AppCompatActivity() {
             .start(ContextCompat.getMainExecutor(this)) { recordEvent ->
                 when(recordEvent) {
                     is VideoRecordEvent.Start -> {
-                        viewBinding.videoCaptureButton.apply {
-                            text = getString(R.string.stop_capture)
+                        viewBinding.btnVideo.apply {
                             isEnabled = true
                         }
                     }
@@ -159,8 +163,7 @@ class CameraViewActivity : AppCompatActivity() {
                             Log.e(TAG, "Video capture ends with error: " +
                                     "${recordEvent.error}")
                         }
-                        viewBinding.videoCaptureButton.apply {
-                            text = getString(R.string.record_video)
+                        viewBinding.btnVideo.apply {
                             isEnabled = true
                         }
                     }
@@ -181,63 +184,21 @@ class CameraViewActivity : AppCompatActivity() {
             val recorder = Recorder.Builder()
                 .setQualitySelector(QualitySelector.from(Quality.HIGHEST))
                 .build()
-            videoCapture = VideoCapture.withOutput(recorder)
 
+            videoCapture = VideoCapture.withOutput(recorder)
             imageCapture = ImageCapture.Builder()
                 .build()
-
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(
                     this, CameraSelector.DEFAULT_BACK_CAMERA, preview, imageCapture, videoCapture)
 
-                // Turn on the flashlight
-                toggleFlashlight(true)
             } catch(exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }
 
         }, ContextCompat.getMainExecutor(this))
-    }
-
-    private fun toggleFlashlight(status: Boolean) {
-        val cameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
-        try {
-            // Assuming you're using the default back camera
-            val cameraId = cameraManager.cameraIdList.firstOrNull { id ->
-                val characteristics = cameraManager.getCameraCharacteristics(id)
-                characteristics.get(CameraCharacteristics.LENS_FACING) == CameraCharacteristics.LENS_FACING_BACK
-            }
-
-            if (cameraId != null) {
-                cameraManager.setTorchMode(cameraId, status)
-            } else {
-                Log.e(TAG, "Back camera not found")
-            }
-        } catch (e: CameraAccessException) {
-            Log.e(TAG, "Failed to access camera for torch mode", e)
-        } catch (e: IllegalArgumentException) {
-            Log.e(TAG, "Torch mode is not available on this device", e)
-        }
-    }
-
-    private fun stopCamera() {
-        // ... any code for stopping the camera ...
-
-        // Turn off the flashlight
-        toggleFlashlight(false)
-    }
-
-
-    private fun requestPermissions() {
-        activityResultLauncher.launch(REQUIRED_PERMISSIONS)
-    }
-
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(
-            baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onDestroy() {
@@ -246,7 +207,7 @@ class CameraViewActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "CameraXBasic"
+        const val TAG = "LogDebug"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
 
         private val REQUIRED_PERMISSIONS =
@@ -261,11 +222,24 @@ class CameraViewActivity : AppCompatActivity() {
 
     }
 
+
+
+
+    // PERMISSIONS
+    private fun requestPermissions() {
+        activityResultLauncher.launch(REQUIRED_PERMISSIONS)
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(
+            baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
     private val activityResultLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions())
         { permissions ->
-            // Handle Permission granted/rejected
+            // handle Permission granted/rejected
             var permissionGranted = true
             permissions.entries.forEach {
                 if (it.key in REQUIRED_PERMISSIONS && !it.value)
