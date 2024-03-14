@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.CameraViewActivity">
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/cameraCaptureButton"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="50dp"
+        android:elevation="2dp"
+        android:text="@string/take_photo"
+        android:background="@drawable/button_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vertical_centerline" />
+
+    <Button
+        android:id="@+id/videoCaptureButton"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="50dp"
+        android:elevation="2dp"
+        android:text="@string/record_video"
+        android:background="@drawable/button_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vertical_centerline" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_centerline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+<!--<androidx.camera.view.PreviewView-->
+<!--android:id="@+id/viewFinder"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent" >-->
+
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_gravity="bottom"-->
+<!--    android:background="@color/purple_200"-->
+<!--    android:orientation="horizontal"-->
+<!--    android:padding="16dp">-->
+
+<!--    &lt;!&ndash; Video Button &ndash;&gt;-->
+<!--    <ImageButton-->
+<!--        android:id="@+id/videoCaptureButton"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="55dp"-->
+<!--        android:contentDescription="@string/record_video"-->
+<!--        android:src="@drawable/ic_photo" />-->
+
+<!--    &lt;!&ndash; Take Photo Button &ndash;&gt;-->
+<!--    <ImageButton-->
+<!--        android:id="@+id/cameraCaptureButton"-->
+<!--        android:layout_width="113dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:contentDescription="@string/take_photo"-->
+<!--        android:src="@drawable/ic_photo_button" />-->
+<!--</LinearLayout>-->
+<!--</androidx.camera.view.PreviewView>-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/cameraCaptureButton"-->
+    <!--        android:layout_width="110dp"-->
+    <!--        android:layout_height="110dp"-->
+    <!--        android:layout_marginBottom="50dp"-->
+    <!--        android:layout_marginEnd="50dp"-->
+    <!--        android:elevation="2dp"-->
+    <!--        android:text="@string/take_photo"-->
+    <!--        android:background="@drawable/button_background"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintEnd_toStartOf="@id/vertical_centerline" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/videoCaptureButton"-->
+    <!--        android:layout_width="110dp"-->
+    <!--        android:layout_height="110dp"-->
+    <!--        android:layout_marginBottom="50dp"-->
+    <!--        android:layout_marginStart="50dp"-->
+    <!--        android:elevation="2dp"-->
+    <!--        android:text="@string/record_video"-->
+    <!--        android:background="@drawable/button_background"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/vertical_centerline" />-->
+
+
+    <!--    <androidx.constraintlayout.widget.Guideline-->
+    <!--        android:id="@+id/vertical_centerline"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintGuide_percent="0.5" />-->
+
+
+    <!--    <androidx.camera.view.PreviewView-->
+    <!--        android:id="@+id/camera_view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/iv_capture"-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:layout_marginBottom="50dp"-->
+    <!--        android:visibility="gone"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+    <!--        android:contentDescription="TODO" />-->
+
+    <!--    &lt;!&ndash; Switch Camera Button &ndash;&gt;-->
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/btn_switch"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_margin="16dp"-->
+    <!--        android:layout_gravity="top|start"-->
+    <!--        android:src="@drawable/ic_switch"-->
+    <!--        android:contentDescription="@string/switch_camera"/>-->
+
+    <!--    &lt;!&ndash; Bottom Box &ndash;&gt;-->
