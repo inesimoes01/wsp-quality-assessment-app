@@ -37,7 +37,7 @@
             android:layout_weight="1"
             android:backgroundTint="#00FFFFFF"
             android:contentDescription="@string/take_photo"
-            android:src="@drawable/ic_photo_button" />
+            android:src="@drawable/photo_button" />
 
         <ImageButton
             android:id="@+id/btn_video"
