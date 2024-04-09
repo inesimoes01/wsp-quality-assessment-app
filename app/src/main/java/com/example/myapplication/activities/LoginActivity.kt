@@ -18,14 +18,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         // save values
         var etUsername = findViewById<EditText>(R.id.username)
         var etPassword = findViewById<EditText>(R.id.password)
         var btnSubmit = findViewById<Button>(R.id.btn_submit)
-
-
-
+        
         // submit button
         btnSubmit.setOnClickListener {
             val username = etUsername.text.toString();
@@ -37,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
 
             // change page
             val cameraView = Intent(this, CameraViewActivity::class.java)
-
             startActivity(cameraView)
         }
     }
