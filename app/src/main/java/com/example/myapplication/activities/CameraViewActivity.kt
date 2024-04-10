@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -31,29 +32,22 @@ import java.util.concurrent.Executors
 class CameraViewActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityCameraViewBinding
     private var imageCapture: ImageCapture? = null
-
     private var videoCapture: VideoCapture<Recorder>? = null
 
     private lateinit var cameraExecutor: ExecutorService
+    private var photoChosenURI: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityCameraViewBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-
-        if (allPermissionsGranted()) {
-            startCamera()
-        } else {
-            requestPermissions()
-        }
-
+        if (allPermissionsGranted()) { startCamera()
+        } else { requestPermissions() }
 
         // listeners for photo and video button
         viewBinding.btnPhoto.setOnClickListener { takePhoto() }
-        viewBinding.btnSettings.setOnClickListener {
-            Log.d(TAG, "alo")
-            goToSettings() }
+        viewBinding.btnSettings.setOnClickListener { goToSettings() }
         viewBinding.btnGallery.setOnClickListener { goToGallery() }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -61,17 +55,36 @@ class CameraViewActivity : AppCompatActivity() {
 
     private fun goToSettings(){
         val settingsView = Intent(this, SettingsActivity::class.java)
-        Log.d(TAG, "here1")
         startActivity(settingsView)
-        Log.d(TAG, "here1")
     }
     private fun goToGallery() {
-        TODO("Not yet implemented")
+        val intent = Intent().apply {
+                type = "image/*"
+                action = Intent.ACTION_GET_CONTENT
+        }
+        imageChooser.launch(Intent.createChooser(intent, "Select Picture"))
     }
+
+    private val imageChooser =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val data: Intent? = result.data
+                data?.let {
+                    if (result.resultCode == RESULT_OK) {
+                        val selectedImageUri = it.data
+                        selectedImageUri?.let { uri ->
+                            photoChosenURI?.setImageURI(uri)
+                            val intent = Intent(this, AcceptPhotoActivity::class.java)
+                            intent.putExtra("uri", uri.toString())
+                            startActivity(intent)
+                        }
+                    }
+                }
+            }
+        }
 
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
-
         val outputOptions = savePhoto()
 
         // set up image capture listener, which is triggered after photo has been taken
@@ -81,13 +94,17 @@ class CameraViewActivity : AppCompatActivity() {
                 override fun onError(exc: ImageCaptureException) {
                     Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
                 }
-                override fun
-                        onImageSaved(output: ImageCapture.OutputFileResults){
+                override fun onImageSaved(output: ImageCapture.OutputFileResults){
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
+                    val intent = Intent(this@CameraViewActivity, AcceptPhotoActivity::class.java)
+                    intent.putExtra("uri", output.savedUri.toString())
+                    startActivity(intent)
                 }
-            })
+            }
+        )
+
     }
 
     private fun savePhoto(): ImageCapture.OutputFileOptions {
@@ -159,9 +176,6 @@ class CameraViewActivity : AppCompatActivity() {
 
     }
 
-
-
-
     // PERMISSIONS
     private fun requestPermissions() {
         activityResultLauncher.launch(REQUIRED_PERMISSIONS)
@@ -173,9 +187,7 @@ class CameraViewActivity : AppCompatActivity() {
     }
 
     private val activityResultLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions())
-        { permissions ->
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             // handle Permission granted/rejected
             var permissionGranted = true
             permissions.entries.forEach {
@@ -192,3 +204,8 @@ class CameraViewActivity : AppCompatActivity() {
         }
 
 }
+
+
+
+
+
