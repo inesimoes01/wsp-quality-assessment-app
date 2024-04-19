@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.Classes.Image
 import com.example.myapplication.R
 
 
@@ -24,20 +25,28 @@ class AcceptPhotoActivity : AppCompatActivity() {
         var btnAccept = findViewById<ImageButton>(R.id.btn_accept)
         var btnReject = findViewById<ImageButton>(R.id.btn_refuse)
 
-        btnAccept.setOnClickListener { goToResults() }
+        btnAccept.setOnClickListener { goToResults(imageUri) }
         btnReject.setOnClickListener { goToCameraView() }
 
     }
 
     private fun goToCameraView() {
+
         val cameraView = Intent(this, CameraViewActivity::class.java)
         startActivity(cameraView)
     }
 
-    private fun goToResults(){
+    private fun goToResults(imageUri: String?){
+        // save image and settings
+        val img = Image(imageUri.toString())
+
+        // call python script
+//        PythonIntegrator().callPythonScript(img, )
+
         val resultsView = Intent(this, ResultsActivity::class.java)
         startActivity(resultsView)
     }
 }
+
 
 

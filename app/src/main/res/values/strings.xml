@@ -7,6 +7,8 @@
     <string name="activity_accept_photo">AcceptPhotoActivity</string>
 
     <string name="switch_camera">Switch camera</string>
+    <string name="login">Log In\n</string>
+    <string name="register">Register\n</string>
     <string name="open_gallery">Open gallery</string>
     <string name="record_video">Start Capture</string>
     <string name="stop_capture">Stop Capture</string>

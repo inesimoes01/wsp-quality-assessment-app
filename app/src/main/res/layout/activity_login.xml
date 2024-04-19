@@ -24,31 +24,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="30dp"
-            android:text="Welcome"
+            android:padding="10dp"
+            android:text="Hello!"
             android:textSize="34sp" />
 
-        <EditText
-            android:id="@+id/username"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Your username"
+            android:padding="10dp"
+            android:text="This is the greeting text to the app"
             android:textAlignment="center"
-            android:textColorHighlight="@color/black"
-            android:textColorHint="@color/green"
-            android:textSize="18sp"
-
-           />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Your password"
-            android:textAlignment="center"
-            android:textColorHighlight="@color/black"
-            android:textColorHint="@color/green"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,12 +44,13 @@
             android:padding="25dp">
 
             <Button
-                android:id="@+id/btn_submit"
-                android:layout_width="wrap_content"
+                android:id="@+id/btn_go_camera"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="Log In"
-                android:textColor="@color/yellow"
-                android:textAllCaps="true" />
+                android:text="Go To Camera"
+                android:textAllCaps="true"
+                android:textColor="@color/yellow" />
+
         </LinearLayout>
 
     </LinearLayout>
