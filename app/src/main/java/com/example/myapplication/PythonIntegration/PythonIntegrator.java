@@ -6,11 +6,13 @@ import java.io.InputStreamReader;
 
 public class PythonIntegrator {
 
-    public static void main(String[] args) {
-        // Call Python script with arguments
-        String result = callPythonScript("C:\\Users\\mines\\OneDrive - Universidade do Porto\\documentos\\00 Uni\\5º ANO\\Tese\\00 GitHub\\vision-quality-assessment-opencv\\src\\android_test.py", "1", "5");
-        System.out.println("Result from Python script: " + result);
-    }
+//    public static void main(String[] args) {
+//        // Call Python script with arguments
+////        String result = callPythonScript("app/src/main/python/main.py", "1", "5");
+////        System.out.println("Result from Python script: " + result);
+//    }
+
+
 
     public static String callPythonScript(String scriptName, String... args) {
         try {

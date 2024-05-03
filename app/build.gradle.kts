@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.chaquo.python")
 }
 
 android {
@@ -9,10 +10,14 @@ android {
 
     defaultConfig {
         applicationId = "com.example.myapplication"
-        minSdk = 25
+        minSdk = 21
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+        ndk {
+            abiFilters+= listOf("arm64-v8a", "x86", "x86_64")
+        }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -48,7 +53,22 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
+//
+//chaquopy {
+//    productFlavors {
+//
+//    }
+//    defaultConfig {
+//        buildPython("C:/Program Files/Python310/python.exe")
+//        pip {
+//            install("matplotlib")
+//            install("opencv-contrib-python-headless==4.5.1.48")
+//        }
+//    }
+//}
+
 
 dependencies {
 
@@ -94,4 +114,21 @@ dependencies {
 
 
 
+}
+
+chaquopy {
+    defaultConfig {
+        version = "3.8"
+        pip {
+            install("opencv-python")
+            install("numpy")
+            install("matplotlib")
+        }
+    }
+    productFlavors { }
+    sourceSets {
+        getByName("main") {
+            srcDir("src/main/python")
+        }
+    }
 }

@@ -4,7 +4,7 @@ package com.example.myapplication.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 
@@ -18,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // save values
-        var btnGoToCamera = findViewById<EditText>(R.id.btn_go_camera)
+        var btnGoToCamera = findViewById<Button>(R.id.btn_go_camera)
 
         // submit button
         btnGoToCamera.setOnClickListener { goToCameraActivity() }

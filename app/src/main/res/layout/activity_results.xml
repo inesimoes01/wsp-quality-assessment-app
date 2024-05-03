@@ -21,13 +21,41 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="105dp"
-            android:layout_marginTop="49dp"
-            android:layout_marginEnd="122dp"
-            android:gravity="center"
+            android:gravity="center|center_horizontal|top"
             android:padding="30dp"
             android:text="@string/results"
-            android:textSize="34sp" />
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="268dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/original_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="center"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/undistorted_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="center"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/segmented_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="center"
+                tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:text="@string/vmd"
                 android:textAlignment="center"
                 android:textAllCaps="false"
@@ -70,7 +98,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:text="@string/rsf"
                 android:textAlignment="center"
                 android:textAllCaps="false"
@@ -97,11 +125,42 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/coverage_percentage_label"
+                android:id="@+id/nodroplets_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="0.5"
+                android:text="@string/nodroplets"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nodroplets_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
+                android:text="@string/nodroplets"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/coverage_percentage_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="0.5"
                 android:text="@string/coverage_percentage"
                 android:textAlignment="center"
                 android:textAllCaps="false"

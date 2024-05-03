@@ -40,10 +40,8 @@ class AcceptPhotoActivity : AppCompatActivity() {
         // save image and settings
         val img = Image(imageUri.toString())
 
-        // call python script
-//        PythonIntegrator().callPythonScript(img, )
-
         val resultsView = Intent(this, ResultsActivity::class.java)
+        resultsView.putExtra("uri", imageUri)
         startActivity(resultsView)
     }
 }

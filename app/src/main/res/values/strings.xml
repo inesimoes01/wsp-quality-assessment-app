@@ -19,6 +19,7 @@
     <string name="width">Width</string>
     <string name="vmd">VMD</string>
     <string name="rsf">RSF</string>
+    <string name="nodroplets">Number of Droplets</string>
     <string name="coverage_percentage">Coverage Percentage</string>
     <string name="accept_photo">Accept photo\n</string>
     <string name="reject_photo">Reject photo\n</string>
