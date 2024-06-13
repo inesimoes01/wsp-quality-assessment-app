@@ -2,10 +2,13 @@ package com.example.myapplication.activities
 
 import android.content.Context
 import android.database.Cursor
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +17,7 @@ import com.chaquo.python.PyObject
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
 import com.example.myapplication.R
+import java.util.regex.Pattern
 
 
 class ResultsActivity: AppCompatActivity() {
@@ -47,42 +51,48 @@ class ResultsActivity: AppCompatActivity() {
 
             //val stringFromBytes: String = result.toString(Charsets.UTF_8)
             Log.d("PythonReader", stringValue)
-            val pattern = "\\(([0-9]*\\.[0-9]+|[0-9]+), ([0-9]*\\.[0-9]+|[0-9]+), ([0-9]*\\.[0-9]+|[0-9]+), ([0-9]*\\.[0-9]+|[0-9]+)\\)".toRegex()
-            val matchResult = pattern.find(stringValue)
-            val values = matchResult?.destructured?.toList()
+//            val pattern = "\\(([0-9]+), ([0-9]*\\.[0-9]+), ([0-9]*\\.[0-9]+), ([0-9]*\\.[0-9]+), '([A-Za-z0-9+/=]+)', '([A-Za-z0-9+/=]+)'\\)".toRegex()
+//            //val pattern = "\\(([0-9]*\\.[0-9]+|[0-9]+), ([0-9]*\\.[0-9]+|[0-9]+), ([0-9]*\\.[0-9]+|[0-9]+), ([0-9]*\\.[0-9]+|[0-9]+)\\)".toRegex()
+//            val matchResult = pattern.find(stringValue)
+//            val values = matchResult?.destructured?.toList()
+//
+//            val noDroplets = values?.get(0)?.toInt()
+//            val coveragePercentage = values?.get(1)?.toDouble()
+//            val rsfValue = values?.get(2)?.toDouble()
+//            val vmdValue = values?.get(3)?.toDouble()
+//            val image_original = values?.get(4)
+//            val image_gray = values?.get(5)
+//            Log.d("PythonReader", noDroplets.toString())
 
-            val noDroplets = values?.get(0)?.toInt()
-            val coveragePercentage = values?.get(1)?.toDouble()
-            val rsfValue = values?.get(2)?.toDouble()
-            val vmdValue = values?.get(3)?.toDouble()
-            Log.d("PythonReader", noDroplets.toString())
+            val pattern = Pattern.compile("\\(([0-9]+), ([0-9]+), ([0-9]+), ([0-9]+), '([A-Za-z0-9+/=]+)', '([A-Za-z0-9+/=]+)'")
+            val matcher = pattern.matcher(stringValue)
 
-            if (values != null) {
+            if (matcher.find()) {
+                val noDroplets = matcher.group(1)?.toInt()
+                val coveragePercentage = matcher.group(2)?.toDouble()
+                val rsfValue = matcher.group(3)?.toDouble()
+                val vmdValue = matcher.group(4)?.toDouble()
+                val image_original = matcher.group(5)
+                val image_gray = matcher.group(6)
+
+                Log.d("PythonReader", noDroplets.toString())
                 findViewById<TextView>(R.id.coverage_percentage_value).text = coveragePercentage.toString()
                 findViewById<TextView>(R.id.rsf_value).text = rsfValue.toString()
                 findViewById<TextView>(R.id.vmd_value).text = vmdValue.toString()
                 findViewById<TextView>(R.id.nodroplets_value).text = noDroplets.toString()
+
+                val imageBytes = Base64.decode(image_original, Base64.DEFAULT)
+                val originalBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+
+                val grayImageBytes = Base64.decode(image_gray, Base64.DEFAULT)
+                val grayBitmap = BitmapFactory.decodeByteArray(grayImageBytes, 0, grayImageBytes.size)
+
+                findViewById<ImageView>(R.id.original_image).setImageBitmap(originalBitmap)
+                findViewById<ImageView>(R.id.undistorted_image).setImageBitmap(grayBitmap)
+                findViewById<ImageView>(R.id.segmented_image).setImageBitmap(grayBitmap)
+
             }
-//            val undistorted_image = module.callAttr("get_undistorted_image").toJava(ByteArray::class.java)
-//            val bitmap1 = BitmapFactory.decodeByteArray(undistorted_image, 0, undistorted_image.size)
-//            findViewById<ImageView>(R.id.undistorted_image).setImageBitmap(bitmap1)
-//
-//            val segmented_image = module.callAttr("get_segmented_image").toJava(ByteArray::class.java)
-//            val bitmap2 = BitmapFactory.decodeByteArray(segmented_image, 0, segmented_image.size)
-//            findViewById<ImageView>(R.id.segmented_image).setImageBitmap(bitmap2)
-//            Log.d("PythonReader", "images?")
 
-
-
-
-//            val reader = BufferedReader(InputStreamReader(process.getInputStream()))
-//            val output = reader.readLine()
-//            val values = output.substring(1, output.length - 1).split(", ".toRegex())
-//                .dropLastWhile { it.isEmpty() }
-//                .toTypedArray()
-//            val result = Arrays.asList(*values)
-
-            //findViewById<TextView>(R.id.coverage_percentage_value).text = bytes.toString()
 
         } catch (e: PyException) {
             Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
