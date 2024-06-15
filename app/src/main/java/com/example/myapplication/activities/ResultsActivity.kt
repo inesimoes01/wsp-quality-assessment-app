@@ -1,5 +1,6 @@
 package com.example.myapplication.activities
 
+
 import android.content.Context
 import android.database.Cursor
 import android.graphics.BitmapFactory
@@ -8,12 +9,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.chaquo.python.PyException
-import com.chaquo.python.PyObject
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
 import com.example.myapplication.R
@@ -22,8 +25,8 @@ import java.util.regex.Pattern
 
 class ResultsActivity: AppCompatActivity() {
 
-    lateinit var result: PyObject
 
+    private var isImageExpanded = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_results)
@@ -51,18 +54,10 @@ class ResultsActivity: AppCompatActivity() {
 
             //val stringFromBytes: String = result.toString(Charsets.UTF_8)
             Log.d("PythonReader", stringValue)
-//            val pattern = "\\(([0-9]+), ([0-9]*\\.[0-9]+), ([0-9]*\\.[0-9]+), ([0-9]*\\.[0-9]+), '([A-Za-z0-9+/=]+)', '([A-Za-z0-9+/=]+)'\\)".toRegex()
-//            //val pattern = "\\(([0-9]*\\.[0-9]+|[0-9]+), ([0-9]*\\.[0-9]+|[0-9]+), ([0-9]*\\.[0-9]+|[0-9]+), ([0-9]*\\.[0-9]+|[0-9]+)\\)".toRegex()
-//            val matchResult = pattern.find(stringValue)
-//            val values = matchResult?.destructured?.toList()
-//
-//            val noDroplets = values?.get(0)?.toInt()
-//            val coveragePercentage = values?.get(1)?.toDouble()
-//            val rsfValue = values?.get(2)?.toDouble()
-//            val vmdValue = values?.get(3)?.toDouble()
-//            val image_original = values?.get(4)
-//            val image_gray = values?.get(5)
-//            Log.d("PythonReader", noDroplets.toString())
+            val dropletImage = findViewById<ImageView>(R.id.original_image)
+
+            val captionImageView = findViewById<TextView>(R.id.captionTextView)
+
 
             val pattern = Pattern.compile("\\(([0-9]+), ([0-9]+), ([0-9]+), ([0-9]+), '([A-Za-z0-9+/=]+)', '([A-Za-z0-9+/=]+)'")
             val matcher = pattern.matcher(stringValue)
@@ -87,11 +82,17 @@ class ResultsActivity: AppCompatActivity() {
                 val grayImageBytes = Base64.decode(image_gray, Base64.DEFAULT)
                 val grayBitmap = BitmapFactory.decodeByteArray(grayImageBytes, 0, grayImageBytes.size)
 
-                findViewById<ImageView>(R.id.original_image).setImageBitmap(originalBitmap)
-                findViewById<ImageView>(R.id.undistorted_image).setImageBitmap(grayBitmap)
-                findViewById<ImageView>(R.id.segmented_image).setImageBitmap(grayBitmap)
-
+                dropletImage.setImageBitmap(originalBitmap)
             }
+
+//            dropletImage.setOnClickListener(View.OnClickListener {
+//                if (isImageExpanded) {
+//                    collapseImage(dropletImage, captionImageView)
+//                } else {
+//                    expandImage(dropletImage, captionImageView)
+//                }
+//                isImageExpanded = !isImageExpanded
+//            })
 
 
         } catch (e: PyException) {
@@ -99,7 +100,33 @@ class ResultsActivity: AppCompatActivity() {
         }
     }
 
-    fun getContentUriFilePath(context: Context, contentUri: Uri): String? {
+    private fun expandImage(imageView: ImageView, captionTextView: TextView) {
+        val scaleAnimation = ScaleAnimation(
+            1.0f, 2.0f,  // Start and end values for the X axis scaling
+            1.0f, 2.0f,  // Start and end values for the Y axis scaling
+            Animation.ABSOLUTE, 0.5f,  // Pivot point of X scaling
+            Animation.ABSOLUTE, 0.5f
+        ) // Pivot point of Y scaling
+        scaleAnimation.fillAfter = true // Needed to keep the result of the animation
+        scaleAnimation.duration = 300
+        imageView.startAnimation(scaleAnimation)
+        captionTextView.visibility = View.VISIBLE
+    }
+
+    private fun collapseImage(imageView: ImageView, captionTextView: TextView) {
+        val scaleAnimation = ScaleAnimation(
+            2.0f, 1.0f,  // Start and end values for the X axis scaling
+            2.0f, 1.0f,  // Start and end values for the Y axis scaling
+            Animation.RELATIVE_TO_SELF, 0.5f,  // Pivot point of X scaling
+            Animation.RELATIVE_TO_SELF, 0.5f
+        ) // Pivot point of Y scaling
+        scaleAnimation.fillAfter = true // Needed to keep the result of the animation
+        scaleAnimation.duration = 300
+        imageView.startAnimation(scaleAnimation)
+        captionTextView.visibility = View.GONE
+    }
+
+    private fun getContentUriFilePath(context: Context, contentUri: Uri): String? {
         val projection = arrayOf(MediaStore.Images.Media.DATA)
         var cursor: Cursor? = null
         var filePath: String? = null
