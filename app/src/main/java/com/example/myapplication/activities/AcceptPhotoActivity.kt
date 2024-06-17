@@ -22,8 +22,8 @@ class AcceptPhotoActivity : AppCompatActivity() {
         imageSelected?.setImageURI(Uri.parse(imageUri))
 
         // listeners for the buttons
-        var btnAccept = findViewById<ImageButton>(R.id.btn_accept)
-        var btnReject = findViewById<ImageButton>(R.id.btn_refuse)
+        val btnAccept = findViewById<ImageButton>(R.id.btn_accept)
+        val btnReject = findViewById<ImageButton>(R.id.btn_refuse)
 
         btnAccept.setOnClickListener { goToResults(imageUri) }
         btnReject.setOnClickListener { goToCameraView() }
