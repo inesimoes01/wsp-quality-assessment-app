@@ -9,9 +9,16 @@
 <!--    <color name="white">#FFFFFFFF</color>-->
 
     <color name="green">#3C6255</color>
-    <color name="yellow">#FDF0D1</color>
+
     <color name="blue">#76ABAE</color>
-    <color name="black">#222831</color>
+
     <color name="white">#EEEEEE</color>
-    <color name="beige">#DAD3C8</color>
+<!--    <color name="beige">#DAD3C8</color>-->
+    <color name="black">#222831</color>
+    <color name = "dark_green">#35513e</color>
+    <color name = "light_green">#466a43</color>
+    <color name = "beige">#f4f1e7</color>
+    <color name = "light2_green">#a4b07d</color>
+    <color name = "yellow">#d3a642</color>
+    <color name = "dark_beige">#c3b897</color>
 </resources>

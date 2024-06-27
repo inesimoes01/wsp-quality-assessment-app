@@ -23,4 +23,5 @@
     <string name="coverage_percentage">Coverage Percentage</string>
     <string name="accept_photo">Accept photo\n</string>
     <string name="reject_photo">Reject photo\n</string>
+    <string name="model_to_use">Segmentation model to use</string>
 </resources>

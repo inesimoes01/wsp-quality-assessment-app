@@ -100,6 +100,7 @@ dependencies {
     implementation("androidx.camera:camera-extensions:$cameraxVersion")
 
     implementation("com.squareup.okhttp3:okhttp:4.9.2")
+
     //implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 }

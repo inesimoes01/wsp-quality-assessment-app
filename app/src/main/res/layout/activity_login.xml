@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/beige"
     tools:context=".activities.LoginActivity">
 
     <LinearLayout
         android:id="@+id/ll_main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/backgroud"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@color/blue"
         android:padding="25dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="168dp"
+            android:layout_height="60dp"
             android:src="@drawable/plant_garden_svgrepo_com" />
 
         <TextView
@@ -26,14 +27,16 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="Hello!"
+            android:textColor="@color/black"
             android:textSize="34sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="This is the greeting text to the app"
+            android:text="Visual quality assessment of water sensitive paper"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -47,9 +50,11 @@
                 android:id="@+id/btn_go_camera"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/yellow"
                 android:text="Go To Camera"
                 android:textAllCaps="true"
-                android:textColor="@color/yellow" />
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

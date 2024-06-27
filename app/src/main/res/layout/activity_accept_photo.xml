@@ -1,58 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/beige"
     tools:context=".activities.AcceptPhotoActivity">
-
-    <ImageView
-        android:id="@+id/image_preview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:contentDescription="TODO"
-        tools:ignore="ContentDescription,HardcodedText,MissingConstraints"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="630dp"
-        android:background="@color/blue"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_above="@id/linearLayout2"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
-        <!-- Video Button -->
-        <ImageButton
+        <ImageView
+            android:id="@+id/image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/gallery_button"
+            tools:ignore="ContentDescription,HardcodedText,MissingConstraints" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:layout_above="@id/linearLayout"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp">
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:clipToPadding="true"
+            android:gravity="center">
+
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="@string/width"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/width_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_column="2"
+                    android:hint="Width of the HydroPaper in cm"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/dark_green"
+                    android:textColorHint="@color/light2_green"
+                    android:textColorLink="@color/dark_green"
+                    android:textCursorDrawable="@color/dark_green"
+                    android:textSize="17sp" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="@string/height"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/dark_green"
+                    android:textColorHint="@color/light2_green"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/height_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_column="2"
+                    android:hint="Heigth of the HydroPaper in cm"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/dark_green"
+                    android:textColorHint="@color/light2_green"
+                    android:textColorLink="@color/dark_green"
+                    android:textCursorDrawable="@color/dark_green"
+                    android:textSize="17sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="@string/model_to_use"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/dark_green"
+                    android:textColorHint="@color/light2_green"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="false"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="10dp"
+                    android:contentDescription="segmentation model to use"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/aiRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:padding="5dp"
+                        android:text="AI"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/dark_green"
+                        android:textColorHint="@color/light2_green"
+                        android:textColorLink="@color/dark_green"
+                        android:textCursorDrawable="@color/dark_green"
+                        android:textSize="15sp" />
+
+
+                    <RadioButton
+                        android:id="@+id/cvRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:checked="false"
+                        android:padding="5dp"
+                        android:text="Computer Vision"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/dark_green"
+                        android:textColorHint="@color/light2_green"
+                        android:textColorLink="@color/dark_green"
+                        android:textCursorDrawable="@color/dark_green"
+                        android:textSize="15sp" />
+
+                </RadioGroup>
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
             android:id="@+id/btn_refuse"
-            android:layout_width="20dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
-            android:layout_weight="1"
-            android:backgroundTint="#00FFFFFF"
-            android:src="@drawable/close_button"
-            android:contentDescription="@string/reject_photo"
-            tools:ignore="ContentDescription" />
+            android:layout_weight="0.5"
+            android:backgroundTint="@color/yellow"
+            android:text="Go Back"
+            android:textAllCaps="true"
+            android:textColor="@color/black" />
 
-        <ImageButton
-            android:id="@+id/btn_accept"
-            android:layout_width="20dp"
+
+        <Space
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
-            android:layout_weight="1"
-            android:backgroundTint="#00FFFFFF"
-            android:src="@drawable/check_button"
-            android:contentDescription="@string/accept_photo"
-            tools:ignore="ContentDescription" />
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:backgroundTint="@color/yellow"
+            android:text="Continue"
+            android:textAllCaps="true"
+            android:textColor="@color/black" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

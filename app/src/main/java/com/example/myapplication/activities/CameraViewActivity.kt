@@ -47,16 +47,16 @@ class CameraViewActivity : AppCompatActivity() {
 
         // listeners for photo and video button
         viewBinding.btnPhoto.setOnClickListener { takePhoto() }
-        viewBinding.btnSettings.setOnClickListener { goToSettings() }
+        // viewBinding.btnSettings.setOnClickListener { goToSettings() }
         viewBinding.btnGallery.setOnClickListener { goToGallery() }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
-    private fun goToSettings(){
-        val settingsView = Intent(this, SettingsActivity::class.java)
-        startActivity(settingsView)
-    }
+//    private fun goToSettings(){
+//        val settingsView = Intent(this, SettingsActivity::class.java)
+//        startActivity(settingsView)
+//    }
     private fun goToGallery() {
         val intent = Intent().apply {
                 type = "image/*"

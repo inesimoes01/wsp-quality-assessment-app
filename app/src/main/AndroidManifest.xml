@@ -45,11 +45,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.SettingsActivity"
-            android:exported="false"
-            android:label="@string/activity_settings"
-            android:theme="@style/Theme.MyApplication" />
+<!--        <activity-->
+<!--            android:name=".activities.SettingsActivity"-->
+<!--            android:exported="false"-->
+<!--            android:label="@string/activity_settings"-->
+<!--            android:theme="@style/Theme.MyApplication" />-->
         <activity
             android:name=".activities.ResultsActivity"
             android:exported="false"

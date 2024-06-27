@@ -1,271 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/beige"
     tools:context=".activities.ResultsActivity">
 
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints">
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_weight="0.1"
             android:backgroundTint="#00FFFFFF"
             android:contentDescription="back button"
             android:src="@drawable/back_button" />
 
         <TextView
             android:id="@+id/filename"
-            android:layout_width="181dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center|top|center_vertical"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:fontFamily="@font/armata"
             android:gravity="center"
             android:text="name_of_file"
             android:textSize="14sp"
             android:textStyle="bold" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/middleBar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/caption"
-        app:layout_constraintTop_toBottomOf="@+id/topBar">
-
-        <RelativeLayout
-            android:id="@+id/imageLayout"
-            android:layout_width="296dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/original_image"
-                android:layout_width="230dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:contentDescription="wsp image"
-                android:focusable="auto"
-                android:scaleType="center"
-                tools:srcCompat="@tools:sample/avatars" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/captionTextView"
+        <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="#80000000"
-            android:padding="8dp"
-            android:text="AHHHHH"
-            android:textColor="#FFFFFF"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="30dp"
-            android:layout_weight="0.3"
-            android:background="@drawable/rounded_edges"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/rsf_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/armata"
-                android:text="10.2"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="40sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/rsf_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/armata"
-                android:text="@string/rsf"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/vmd_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/armata"
-                android:text="10.5"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="40sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/vmd_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:fontFamily="@font/armata"
-                android:text="@string/vmd"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/coverage_percentage_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/armata"
-                android:text="23%"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="40sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/coverage_percentage_label"
-                android:layout_width="98dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:fontFamily="@font/armata"
-                android:text="@string/coverage_percentage"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/nodroplets_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/armata"
-                android:text="423"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="40sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/nodroplets_label"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:fontFamily="@font/armata"
-                android:text="@string/nodroplets"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/overlapped_percentage_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/armata"
-                android:text="35%"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="40sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/overlapped_percentage_label"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:fontFamily="@font/armata"
-                android:text="Overlapped Droplets Percentage"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+            android:layout_weight="0.1" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/caption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="541dp"
-        android:background="@drawable/rounded_edges"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="141dp">
+    <include
+        layout="@layout/scroll_results"
+        android:layout_width="wrap_content"
+        android:layout_height="662dp"
+        android:layout_gravity="bottom"
+        app:layout_anchorGravity="bottom" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Single circular droplet" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Single elipse droplet" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Overlapped droplet" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical" />
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
