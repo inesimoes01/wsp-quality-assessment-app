@@ -3,73 +3,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/beige">
 
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/beige">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/middleBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:orientation="horizontal">
+                android:clipToPadding="false">
 
-                <RelativeLayout
-                    android:id="@+id/imageLayout"
-                    android:layout_width="296dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageButton
-                        android:id="@+id/original_image"
-                        android:layout_width="230dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:contentDescription="wsp image"
-                        android:focusable="auto"
-                        android:scaleType="center"
-                        android:src="@drawable/gallery_button"/>
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/captionTextView"
+                <ImageButton
+                    android:id="@+id/original_image"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:background="#80000000"
-                    android:padding="8dp"
-                    android:text="AHHHHH"
-                    android:textColor="#FFFFFF"
-                    android:visibility="gone" />
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:contentDescription="wsp image"
+                    android:focusable="auto"
+                    android:scaleType="center"
+                    android:src="@drawable/gallery_button" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginBottom="30dp"
-                    android:layout_weight="0.3"
-                    android:background="@drawable/rounded_edges"
+                    android:background="@drawable/rounded_edges2"
                     android:orientation="vertical">
 
                     <TextView
@@ -77,19 +60,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/armata"
                         android:text="10.2"
                         android:textAlignment="center"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="40sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/rsf_label"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_marginBottom="10dp"
@@ -112,115 +95,152 @@
                         android:text="10.5"
                         android:textAlignment="center"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="40sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/vmd_label"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_marginBottom="10dp"
                         android:fontFamily="@font/armata"
                         android:text="@string/vmd"
                         android:textAlignment="center"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/coverage_percentage_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:fontFamily="@font/armata"
                         android:text="23%"
                         android:textAlignment="center"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="40sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/coverage_percentage_label"
-                        android:layout_width="98dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_marginBottom="10dp"
                         android:fontFamily="@font/armata"
                         android:text="@string/coverage_percentage"
                         android:textAlignment="center"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/nodroplets_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:fontFamily="@font/armata"
                         android:text="423"
                         android:textAlignment="center"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="40sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/nodroplets_label"
-                        android:layout_width="90dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_marginBottom="10dp"
                         android:fontFamily="@font/armata"
                         android:text="@string/nodroplets"
                         android:textAlignment="center"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/overlapped_percentage_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:fontFamily="@font/armata"
                         android:text="35%"
                         android:textAlignment="center"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="40sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/overlapped_percentage_label"
-                        android:layout_width="90dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_marginBottom="10dp"
                         android:fontFamily="@font/armata"
                         android:text="Overlapped Droplets Percentage"
                         android:textAlignment="center"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/caption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_below="@id/middleBar"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/rounded_edges"
                 android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="5dp"
+                        android:background="#3F51B5" />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="5dp"
+                        android:background="#9C27B0" />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="7dp"
+                        android:background="#4CAF50"
+                        app:drawableTint="#003F51B5" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -231,34 +251,74 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Single circular droplet" />
+                        android:layout_margin="8dp"
+                        android:fontFamily="@font/armata"
+
+                        android:text="Single circular droplet"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Single elipse droplet" />
+                        android:layout_margin="8dp"
+                        android:fontFamily="@font/armata"
+
+                        android:text="Single elipse droplet"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/armata"
                         android:text="Overlapped droplet" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical" />
-
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imageView2"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/gallery_button"/>
+                android:layout_below="@id/caption">
 
-        </LinearLayout>
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                   />
+
+                <TextView
+                    android:id="@+id/tvXMax"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="right"
+                    android:text="dash"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/tvYMax"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="right"
+                    android:text="dash"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    tools:ignore="RtlHardcoded" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

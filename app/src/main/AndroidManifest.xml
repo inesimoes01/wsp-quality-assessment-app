@@ -33,33 +33,33 @@
             android:name=".activities.CameraViewActivity"
             android:exported="false"
             android:label="@string/activity_camera_view"
-            android:theme="@style/Theme.MyApplication" />
+            android:theme="@style/Theme.MyApplication"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
             android:label="@string/activity_login"
-            android:theme="@style/Theme.MyApplication">
+            android:theme="@style/Theme.MyApplication"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity-->
-<!--            android:name=".activities.SettingsActivity"-->
-<!--            android:exported="false"-->
-<!--            android:label="@string/activity_settings"-->
-<!--            android:theme="@style/Theme.MyApplication" />-->
         <activity
             android:name=".activities.ResultsActivity"
             android:exported="false"
             android:label="@string/activity_results"
-            android:theme="@style/Theme.MyApplication" />
+            android:theme="@style/Theme.MyApplication"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.AcceptPhotoActivity"
             android:exported="false"
             android:label="@string/activity_results"
-            android:theme="@style/Theme.MyApplication" />
+            android:theme="@style/Theme.MyApplication"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"
