@@ -24,4 +24,7 @@
     <string name="accept_photo">Accept photo\n</string>
     <string name="reject_photo">Reject photo\n</string>
     <string name="model_to_use">Segmentation model to use</string>
+    <string name="width_hint"><font size="13">Width of the HydroPaper in cm</font></string>
+    <string name="height_hint"><font size="13">Height of the HydroPaper in cm</font></string>
+
 </resources>

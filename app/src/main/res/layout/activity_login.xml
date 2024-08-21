@@ -11,7 +11,7 @@
         android:id="@+id/ll_main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/backgroud"
+        android:background="@drawable/background2"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="25dp">
@@ -31,10 +31,10 @@
             android:textSize="34sp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="287dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Visual quality assessment of water sensitive paper"
+            android:text="Spray quality assessment of water sensitive paper"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp" />

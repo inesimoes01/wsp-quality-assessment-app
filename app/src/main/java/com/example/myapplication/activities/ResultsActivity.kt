@@ -35,6 +35,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -69,12 +70,11 @@ class ResultsActivity: AppCompatActivity() {
             encodedImage,
             Settings.getReal_width(),
             Settings.getReal_height(),
-            Settings.isIsAI()
+            Settings.getModel()
         )
 
         setContentView(R.layout.activity_results)
-        dataListing()
-        setChart()
+
 
         val imageOriginalView = findViewById<ImageButton>(R.id.original_image)
 
@@ -98,16 +98,16 @@ class ResultsActivity: AppCompatActivity() {
         startActivity(acceptPhotoView)
     }
 
-    private fun sendRequest(encodedImage: String?, width: Double, height: Double, isAI: Boolean) {
+    private fun sendRequest(encodedImage: String?, width: Double, height: Double, model: Int) {
         val client = OkHttpClient()
-        val url = "http://192.168.60.1:5000/perform_segmentation"
+        val url = "http://192.168.1.14:5000/perform_segmentation"
 
         // create the json file
         val jsonObject = JSONObject().apply {
             put("image_uri", encodedImage)
             put("width", width)
             put("height", height)
-            put("isAI", isAI)
+            put("model", model)
         }
         val body = jsonObject.toString().toRequestBody("application/json".toMediaType())
 
@@ -145,12 +145,13 @@ class ResultsActivity: AppCompatActivity() {
     private fun handleJSONResponse(responseData: String) {
         val jsonObject = JSONObject(responseData)
 
-        // set image
-        val imageBitmap = jsonObject.getString("image_bitmap")
-        val imageBytes = Base64.decode(imageBitmap, Base64.DEFAULT)
-        imageFinalBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-        findViewById<ImageView>(R.id.original_image).setImageBitmap(imageFinalBitmap)
-        //findViewById<ImageView>(R.id.expanded_image).setImageBitmap(imageFinalBitmap)
+//        // set image
+//        val imageBitmap = jsonObject.getString("image_bitmap")
+//        val imageBytes = Base64.decode(imageBitmap, Base64.DEFAULT)
+//        imageFinalBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+//        findViewById<ImageView>(R.id.original_image).setImageBitmap(imageFinalBitmap)
+
+
         // read and write statistics values
         val vmd = jsonObject.getDouble("vmd")
         val rsf = jsonObject.getDouble("rsf")
@@ -162,34 +163,47 @@ class ResultsActivity: AppCompatActivity() {
         findViewById<TextView>(R.id.rsf_value).text = rsf.toString()
         findViewById<TextView>(R.id.vmd_value).text = vmd.toString()
         findViewById<TextView>(R.id.nodroplets_value).text = numberDroplets.toString()
-        findViewById<TextView>(R.id.overlapped_percentage_value).text =
-            overlappedPercentage.toString()
+        findViewById<TextView>(R.id.overlapped_percentage_value).text = overlappedPercentage.toString()
 
         // create graph with the value of the radius
-        val radiusArray = jsonObject.getJSONArray("values_of_radius")
-        val radiusValues = mutableListOf<Double>()
-        for (i in 0 until radiusArray.length()) {
-            radiusValues.add(radiusArray.getDouble(i))
-        }
+//        val radiusArray = jsonObject.getJSONArray("values_of_radius")
+//        val radiusValues = mutableListOf<Double>()
+//        for (i in 0 until radiusArray.length()) {
+//            radiusValues.add(radiusArray.getDouble(i))
+//        }
         //TODO create a graph for radius
-
-
+        Log.d("rest api", jsonObject.toString())
+        val dropletCounts = jsonArrayToIntList(jsonObject.getJSONArray("values_of_size"))
+        Log.d("rest api", dropletCounts.toString())
+        dataListing(dropletCounts)
+        setChart()
     }
 
+    private fun jsonArrayToList(jsonArray: JSONArray): List<String> {
+        val list = mutableListOf<String>()
+        for (i in 0 until jsonArray.length()) {
+            list.add(jsonArray.getString(i))
+        }
+        return list
+    }
 
+    private fun jsonArrayToIntList(jsonArray: JSONArray): List<Int> {
+        val list = mutableListOf<Int>()
+        for (i in 0 until jsonArray.length()) {
+            list.add(jsonArray.getInt(i))
+        }
+        return list
+    }
 
-    private fun dataListing(){
-        dropletValues.add(BarEntry(0.toFloat(), 13.toFloat()))
-        dropletValues.add(BarEntry(1.toFloat(), 2.toFloat()))
-        dropletValues.add(BarEntry(2.toFloat(), 6.toFloat()))
-        dropletValues.add(BarEntry(3.toFloat(), 7.toFloat()))
-        dropletValues.add(BarEntry(4.toFloat(), 10.toFloat()))
-
+    private fun dataListing(dropletCounts: List<Int>) {
+        for (i in 0 until 6){
+            dropletValues.add(BarEntry(i.toFloat(), dropletCounts[i].toFloat()))
+        }
+        Log.d("rest api", dropletCounts.toString())
     }
 
     private fun setChart(){
-        val tvX = findViewById<TextView>(R.id.tvXMax)
-        val tvY = findViewById<TextView>(R.id.tvYMax)
+
         val chart = findViewById<BarChart>(R.id.chart1)
 
         chart.description.isEnabled = false
@@ -203,7 +217,7 @@ class ResultsActivity: AppCompatActivity() {
         xAxis.setDrawGridLines(false)
         xAxis.granularity = 1f
         xAxis.isGranularityEnabled = true
-        xAxis.valueFormatter = IndexAxisValueFormatter(arrayListOf("Sales", "Profit"))
+        xAxis.valueFormatter = IndexAxisValueFormatter(arrayListOf("1", "2", "3", "4", "5", "6", "7"))
         chart.axisLeft.setDrawGridLines(false)
         chart.legend.isEnabled = false
 
@@ -214,6 +228,7 @@ class ResultsActivity: AppCompatActivity() {
             barDataSetter.values = dropletValues
             chart.data.notifyDataChanged()
             chart.notifyDataSetChanged()
+            Log.d("rest api", "filling graph")
         } else {
             barDataSetter = BarDataSet(dropletValues, "DATA Set")
 
@@ -224,6 +239,8 @@ class ResultsActivity: AppCompatActivity() {
                 Color.rgb(164, 176, 125),
                 Color.rgb(211, 166, 66),
                 Color.rgb(195, 184, 151),
+                Color.rgb(70, 106, 67),
+                Color.rgb(244, 241, 231),
             )
             barDataSetter.setDrawValues(false)
 

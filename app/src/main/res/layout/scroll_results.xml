@@ -3,57 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/beige">
 
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/beige">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/middleBar"
+                android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false">
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true">
 
-                <ImageButton
-                    android:id="@+id/original_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:contentDescription="wsp image"
-                    android:focusable="auto"
-                    android:scaleType="center"
-                    android:src="@drawable/gallery_button" />
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_toStartOf="@+id/linearLayout3"
+                    android:padding="20dp"
+                    android:src="@tools:sample/avatars" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="false"
                     android:layout_alignParentRight="true"
+
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/rounded_edges2"
-                    android:orientation="vertical">
+                    android:background="@drawable/results_shape"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="20dp">
 
                     <TextView
                         android:id="@+id/rsf_value"
@@ -61,9 +57,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_marginTop="15dp"
-                        android:layout_marginBottom="10dp"
+
                         android:fontFamily="@font/armata"
-                        android:text="10.2"
+                        android:text="1.02"
                         android:textAlignment="center"
                         android:textAllCaps="false"
                         android:textColor="@color/black"
@@ -90,9 +86,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
+
                         android:fontFamily="@font/armata"
-                        android:text="10.5"
+                        android:text="406"
                         android:textAlignment="center"
                         android:textAllCaps="false"
                         android:textColor="@color/black"
@@ -119,9 +115,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
+
                         android:fontFamily="@font/armata"
-                        android:text="23%"
+                        android:text="6.4%"
                         android:textAlignment="center"
                         android:textAllCaps="false"
                         android:textColor="@color/black"
@@ -130,41 +126,14 @@
 
                     <TextView
                         android:id="@+id/coverage_percentage_label"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/armata"
-                        android:text="@string/coverage_percentage"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/nodroplets_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/armata"
-                        android:text="423"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black"
-                        android:textSize="40sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/nodroplets_label"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/armata"
-                        android:text="@string/nodroplets"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/coverage_percentage"
                         android:textAlignment="center"
                         android:textAllCaps="false"
                         android:textColor="@color/black"
@@ -177,9 +146,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
+
                         android:fontFamily="@font/armata"
-                        android:text="35%"
+                        android:text="35.1%"
                         android:textAlignment="center"
                         android:textAllCaps="false"
                         android:textColor="@color/black"
@@ -188,11 +157,13 @@
 
                     <TextView
                         android:id="@+id/overlapped_percentage_label"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/armata"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
                         android:text="Overlapped Droplets Percentage"
                         android:textAlignment="center"
                         android:textAllCaps="false"
@@ -200,121 +171,166 @@
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
-                </LinearLayout>
+                    <TextView
+                        android:id="@+id/nodroplets_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_marginTop="10dp"
 
+                        android:fontFamily="@font/armata"
+                        android:text="1163"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/nodroplets_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/armata"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/nodroplets"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
             </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/caption"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/middleBar"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/rounded_edges"
-                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="300dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_margin="5dp"
-                        android:background="#3F51B5" />
+                android:layout_below="@id/image"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/legenda_shape"
+                android:orientation="horizontal"
+                android:paddingEnd="20dp">
 
-                    <TextView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_margin="5dp"
-                        android:background="#9C27B0" />
-
-                    <TextView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_margin="7dp"
-                        android:background="#4CAF50"
-                        app:drawableTint="#003F51B5" />
-                </LinearLayout>
-
-                <LinearLayout
+                <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical">
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="3">
 
-                    <TextView
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:fontFamily="@font/armata"
+                        android:layout_height="match_parent">
 
-                        android:text="Single circular droplet"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        <ImageView
+                            android:id="@+id/imageView1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_column="1"
+                            app:srcCompat="@drawable/rounded_edges"
+                            app:tint="@color/white" />
 
-                    <TextView
+                        <!--                        <TextView-->
+                        <!--                            android:layout_width="20dp"-->
+                        <!--                            android:layout_height="20dp"-->
+                        <!--                            android:layout_column="1"-->
+                        <!--                            android:layout_margin="5dp"-->
+                        <!--                            android:background="#3F51B5"-->
+                        <!--                            android:foregroundTint="#673AB7"-->
+                        <!--                            android:textColorHighlight="#009688" />-->
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+
+                            android:layout_margin="5dp"
+                            android:fontFamily="@font/armata"
+                            android:text="Single circular droplet"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </TableRow>
+
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:fontFamily="@font/armata"
+                        android:layout_height="match_parent" />
 
-                        android:text="Single elipse droplet"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:layout_height="match_parent">
 
-                        android:textStyle="bold"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/armata"
-                        android:text="Overlapped droplet" />
-                </LinearLayout>
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_column="1"
+                            app:srcCompat="@drawable/rounded_edges"
+                            app:tint="@color/dark_green" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+                            android:layout_margin="5dp"
+
+                            android:fontFamily="@font/armata"
+                            android:text="Singular elipse droplet"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_column="1"
+                            app:srcCompat="@drawable/rounded_edges"
+                            app:tint="@color/dark_green" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+                            android:layout_margin="5dp"
+
+                            android:fontFamily="@font/armata"
+                            android:text="Overlapped droplet"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
 
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/caption">
+                android:layout_below="@id/caption"
+                android:paddingTop="40dp">
 
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/chart1"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                   />
+                    android:layout_height="300dp" />
 
-                <TextView
-                    android:id="@+id/tvXMax"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="right"
-                    android:text="dash"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    tools:ignore="RtlHardcoded" />
 
-                <TextView
-                    android:id="@+id/tvYMax"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="right"
-                    android:text="dash"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    tools:ignore="RtlHardcoded" />
             </RelativeLayout>
 
         </RelativeLayout>

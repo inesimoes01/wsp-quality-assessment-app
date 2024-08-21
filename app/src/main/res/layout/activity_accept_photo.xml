@@ -66,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_column="2"
-                    android:hint="Width of the HydroPaper in cm"
+                    android:hint="@string/width_hint"
                     android:inputType="numberDecimal"
                     android:textAlignment="center"
                     android:textColor="@color/black"
@@ -102,7 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_column="2"
-                    android:hint="Heigth of the HydroPaper in cm"
+                    android:hint="@string/height_hint"
                     android:inputType="numberDecimal"
                     android:textAlignment="center"
                     android:textColor="@color/black"
@@ -205,7 +205,8 @@
             android:backgroundTint="@color/yellow"
             android:text="Go Back"
             android:textAllCaps="true"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
 
         <Space
@@ -221,7 +222,8 @@
             android:backgroundTint="@color/yellow"
             android:text="Continue"
             android:textAllCaps="true"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="wrap_content"

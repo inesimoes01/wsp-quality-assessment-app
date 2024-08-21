@@ -5,7 +5,9 @@ public class Settings {
 
     private static double real_width;
     private static double real_height;
-    private static boolean isAI;
+
+
+    private static int model;
 
 
     public static double getReal_width() {
@@ -24,14 +26,14 @@ public class Settings {
         Settings.real_height = real_height;
     }
 
-    public static boolean isIsAI() {
-        return isAI;
+
+    public static int getModel() {
+        return model;
     }
 
-    public static void setIsAI(boolean isAI) {
-        Settings.isAI = isAI;
+    public static void setModel(int model) {
+        Settings.model = model;
     }
-
 
 
 }

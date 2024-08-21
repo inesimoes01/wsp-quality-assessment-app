@@ -71,7 +71,7 @@ class AcceptPhotoActivity : AppCompatActivity() {
             val hDouble = h.text.toString().replace(Regex(",(?=\\d)"), ".").toDouble()
             Settings.setReal_width(wDouble)
             Settings.setReal_height(hDouble)
-            Settings.setIsAI(isAI.isActivated)
+            Settings.setModel(1)
 
             goToResults(imageUri)
         }
