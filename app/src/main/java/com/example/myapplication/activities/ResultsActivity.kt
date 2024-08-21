@@ -76,7 +76,7 @@ class ResultsActivity: AppCompatActivity() {
         setContentView(R.layout.activity_results)
 
 
-        val imageOriginalView = findViewById<ImageButton>(R.id.original_image)
+        val imageOriginalView = findViewById<ImageView>(R.id.original_image)
 
         val fileNameView = findViewById<TextView>(R.id.filename)
         var fileName = "filename"
