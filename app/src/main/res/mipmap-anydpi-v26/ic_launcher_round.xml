@@ -4,3 +4,4 @@
     <foreground android:drawable="@drawable/icon"/>
     <monochrome android:drawable="@drawable/icon"/>
 </adaptive-icon>
+
