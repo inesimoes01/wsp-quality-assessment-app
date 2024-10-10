@@ -65,13 +65,16 @@ class AcceptPhotoActivity : AppCompatActivity() {
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            Log.d("rest api", "move")
+            Log.d("rest api", "this is the width" + w.text.toString())
 
             val wDouble = w.text.toString().replace(Regex(",(?=\\d)"), ".").toDouble()
             val hDouble = h.text.toString().replace(Regex(",(?=\\d)"), ".").toDouble()
             Settings.setReal_width(wDouble)
             Settings.setReal_height(hDouble)
-            Settings.setModel(1)
+            if (isAI.isChecked)
+                Settings.setModel(0)
+            else
+                Settings.setModel(1)
 
             goToResults(imageUri)
         }

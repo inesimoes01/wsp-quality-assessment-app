@@ -58,6 +58,8 @@ class ResultsActivity: AppCompatActivity() {
         val contentUri = Uri.parse(imageUri)
         val filePath = getContentUriFilePath(this, contentUri)
 
+        Log.d("rest api", "alo3")
+
         // encode image to send over json file
         val bitmap = BitmapFactory.decodeFile(filePath)
         val byteArrayOutputStream = ByteArrayOutputStream()
@@ -65,6 +67,7 @@ class ResultsActivity: AppCompatActivity() {
         val byteArray = byteArrayOutputStream.toByteArray()
         val encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT)
 
+        Log.d("rest api", "alo this is width" + Settings.getReal_width())
         // get settings values
         sendRequest(
             encodedImage,
@@ -75,6 +78,7 @@ class ResultsActivity: AppCompatActivity() {
 
         setContentView(R.layout.activity_results)
 
+        Log.d("rest api", "alo1")
 
         val imageOriginalView = findViewById<ImageView>(R.id.original_image)
 
@@ -84,7 +88,6 @@ class ResultsActivity: AppCompatActivity() {
             fileName = filePath.substringAfterLast('/')
         }
         fileNameView.setText(fileName)
-
 
         val backButton = findViewById<ImageButton>(R.id.imageButton)
         backButton.setOnClickListener{
@@ -100,13 +103,13 @@ class ResultsActivity: AppCompatActivity() {
 
     private fun sendRequest(encodedImage: String?, width: Double, height: Double, model: Int) {
         val client = OkHttpClient()
-        val url = "http://192.168.1.14:5000/perform_segmentation"
+        val url = "http://192.168.1.173:5000/perform_segmentation"
 
         // create the json file
         val jsonObject = JSONObject().apply {
             put("image_uri", encodedImage)
-            put("width", width)
-            put("height", height)
+            put("paper_width", width)
+            put("paper_height", height)
             put("model", model)
         }
         val body = jsonObject.toString().toRequestBody("application/json".toMediaType())
@@ -129,7 +132,6 @@ class ResultsActivity: AppCompatActivity() {
                     val responseData = response.body?.string()
                     runOnUiThread {
                         responseData?.let {
-
                             handleJSONResponse(responseData)
                         }
                     }
@@ -157,13 +159,11 @@ class ResultsActivity: AppCompatActivity() {
         val rsf = jsonObject.getDouble("rsf")
         val coveragePercentage = jsonObject.getDouble("coverage_percentage")
         val numberDroplets = jsonObject.getInt("number_droplets")
-        val overlappedPercentage = jsonObject.getDouble("overlapped_percentage")
 
         findViewById<TextView>(R.id.coverage_percentage_value).text = coveragePercentage.toString()
         findViewById<TextView>(R.id.rsf_value).text = rsf.toString()
         findViewById<TextView>(R.id.vmd_value).text = vmd.toString()
         findViewById<TextView>(R.id.nodroplets_value).text = numberDroplets.toString()
-        findViewById<TextView>(R.id.overlapped_percentage_value).text = overlappedPercentage.toString()
 
         // create graph with the value of the radius
 //        val radiusArray = jsonObject.getJSONArray("values_of_radius")

@@ -34,7 +34,7 @@
                     android:layout_marginBottom="0dp"
                     android:layout_toStartOf="@+id/linearLayout3"
                     android:padding="20dp"
-                    android:src="@tools:sample/avatars" />
+                    tools:srcCompat="@tools:sample/avatars[3]" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout3"
@@ -141,37 +141,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/overlapped_percentage_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginTop="10dp"
-
-                        android:fontFamily="@font/armata"
-                        android:text="35.1%"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black"
-                        android:textSize="40sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/overlapped_percentage_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/armata"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:text="Overlapped Droplets Percentage"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
                         android:id="@+id/nodroplets_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -205,124 +174,10 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-
-                android:layout_below="@id/image"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/legenda_shape"
-                android:orientation="horizontal"
-                android:paddingEnd="20dp">
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="3">
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/imageView1"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_column="1"
-                            app:srcCompat="@drawable/rounded_edges"
-                            app:tint="@color/white" />
-
-                        <!--                        <TextView-->
-                        <!--                            android:layout_width="20dp"-->
-                        <!--                            android:layout_height="20dp"-->
-                        <!--                            android:layout_column="1"-->
-                        <!--                            android:layout_margin="5dp"-->
-                        <!--                            android:background="#3F51B5"-->
-                        <!--                            android:foregroundTint="#673AB7"-->
-                        <!--                            android:textColorHighlight="#009688" />-->
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_column="2"
-
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/armata"
-                            android:text="Single circular droplet"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/imageView2"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_column="1"
-                            app:srcCompat="@drawable/rounded_edges"
-                            app:tint="@color/dark_green" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_column="2"
-                            android:layout_margin="5dp"
-
-                            android:fontFamily="@font/armata"
-                            android:text="Singular elipse droplet"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/imageView2"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_column="1"
-                            app:srcCompat="@drawable/rounded_edges"
-                            app:tint="@color/dark_green" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_column="2"
-                            android:layout_margin="5dp"
-
-                            android:fontFamily="@font/armata"
-                            android:text="Overlapped droplet"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </TableRow>
-                </TableLayout>
-
-            </LinearLayout>
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/caption"
+                android:layout_below="@id/image"
                 android:paddingTop="40dp">
 
                 <com.github.mikephil.charting.charts.BarChart
